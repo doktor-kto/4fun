@@ -20,12 +20,10 @@ namespace PosterClient
         {
             try
             {
-                TcpClient tcpclnt = new TcpClient();
-                Console.WriteLine("Connecting.....");
-
-                tcpclnt.Connect("178.162.93.60", 5050);
+                
                 // use the ipaddress as in the server program
 
+                /*
                 Console.WriteLine("Connected");
                 Console.Write("Enter the string to be transmitted : ");
 
@@ -46,7 +44,7 @@ namespace PosterClient
                 for (int i = 0; i < k; i++)
                     Console.Write(Convert.ToChar(bb[i]));
 
-                tcpclnt.Close();
+                tcpclnt.Close();*/
             }
 
             catch (Exception e)

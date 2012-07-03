@@ -30,25 +30,25 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button4 = new System.Windows.Forms.Button();
+            this.restateLogin = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.olxLogin = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.avitoLogin = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.slandoLogin = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -83,9 +83,9 @@
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.textBox20 = new System.Windows.Forms.TextBox();
+            this.connectButton = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
+            this.ipTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -106,25 +106,25 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button4);
+            this.tabPage1.Controls.Add(this.restateLogin);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.label11);
             this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.textBox7);
             this.tabPage1.Controls.Add(this.textBox8);
-            this.tabPage1.Controls.Add(this.button3);
+            this.tabPage1.Controls.Add(this.olxLogin);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.textBox5);
             this.tabPage1.Controls.Add(this.textBox6);
-            this.tabPage1.Controls.Add(this.button2);
+            this.tabPage1.Controls.Add(this.avitoLogin);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.textBox3);
             this.tabPage1.Controls.Add(this.textBox4);
-            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.slandoLogin);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label1);
@@ -138,14 +138,14 @@
             this.tabPage1.Text = "Аккаунты";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // restateLogin
             // 
-            this.button4.Location = new System.Drawing.Point(360, 379);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(122, 46);
-            this.button4.TabIndex = 23;
-            this.button4.Text = "Login";
-            this.button4.UseVisualStyleBackColor = true;
+            this.restateLogin.Location = new System.Drawing.Point(360, 379);
+            this.restateLogin.Name = "restateLogin";
+            this.restateLogin.Size = new System.Drawing.Size(122, 46);
+            this.restateLogin.TabIndex = 23;
+            this.restateLogin.Text = "Login";
+            this.restateLogin.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
@@ -188,14 +188,14 @@
             this.textBox8.Size = new System.Drawing.Size(257, 20);
             this.textBox8.TabIndex = 18;
             // 
-            // button3
+            // olxLogin
             // 
-            this.button3.Location = new System.Drawing.Point(360, 262);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(122, 46);
-            this.button3.TabIndex = 17;
-            this.button3.Text = "Login";
-            this.button3.UseVisualStyleBackColor = true;
+            this.olxLogin.Location = new System.Drawing.Point(360, 262);
+            this.olxLogin.Name = "olxLogin";
+            this.olxLogin.Size = new System.Drawing.Size(122, 46);
+            this.olxLogin.TabIndex = 17;
+            this.olxLogin.Text = "Login";
+            this.olxLogin.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -238,14 +238,14 @@
             this.textBox6.Size = new System.Drawing.Size(257, 20);
             this.textBox6.TabIndex = 12;
             // 
-            // button2
+            // avitoLogin
             // 
-            this.button2.Location = new System.Drawing.Point(360, 151);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(122, 46);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Login";
-            this.button2.UseVisualStyleBackColor = true;
+            this.avitoLogin.Location = new System.Drawing.Point(360, 151);
+            this.avitoLogin.Name = "avitoLogin";
+            this.avitoLogin.Size = new System.Drawing.Size(122, 46);
+            this.avitoLogin.TabIndex = 11;
+            this.avitoLogin.Text = "Login";
+            this.avitoLogin.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -288,14 +288,14 @@
             this.textBox4.Size = new System.Drawing.Size(257, 20);
             this.textBox4.TabIndex = 6;
             // 
-            // button1
+            // slandoLogin
             // 
-            this.button1.Location = new System.Drawing.Point(360, 39);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(122, 46);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Login";
-            this.button1.UseVisualStyleBackColor = true;
+            this.slandoLogin.Location = new System.Drawing.Point(360, 39);
+            this.slandoLogin.Name = "slandoLogin";
+            this.slandoLogin.Size = new System.Drawing.Size(122, 46);
+            this.slandoLogin.TabIndex = 5;
+            this.slandoLogin.Text = "Login";
+            this.slandoLogin.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -593,13 +593,12 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Антикаптча";
             this.tabPage3.UseVisualStyleBackColor = true;
-            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.button7);
+            this.tabPage4.Controls.Add(this.connectButton);
             this.tabPage4.Controls.Add(this.label25);
-            this.tabPage4.Controls.Add(this.textBox20);
+            this.tabPage4.Controls.Add(this.ipTextBox);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(927, 734);
@@ -607,12 +606,15 @@
             this.tabPage4.Text = "Сервер";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // textBox20
+            // connectButton
             // 
-            this.textBox20.Location = new System.Drawing.Point(71, 50);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(257, 20);
-            this.textBox20.TabIndex = 0;
+            this.connectButton.Location = new System.Drawing.Point(353, 37);
+            this.connectButton.Name = "connectButton";
+            this.connectButton.Size = new System.Drawing.Size(152, 44);
+            this.connectButton.TabIndex = 2;
+            this.connectButton.Text = "Connect";
+            this.connectButton.UseVisualStyleBackColor = true;
+            this.connectButton.Click += new System.EventHandler(this.connectButton_Click);
             // 
             // label25
             // 
@@ -623,14 +625,12 @@
             this.label25.TabIndex = 1;
             this.label25.Text = "IP:";
             // 
-            // button7
+            // ipTextBox
             // 
-            this.button7.Location = new System.Drawing.Point(353, 37);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(152, 44);
-            this.button7.TabIndex = 2;
-            this.button7.Text = "Connect";
-            this.button7.UseVisualStyleBackColor = true;
+            this.ipTextBox.Location = new System.Drawing.Point(71, 50);
+            this.ipTextBox.Name = "ipTextBox";
+            this.ipTextBox.Size = new System.Drawing.Size(257, 20);
+            this.ipTextBox.TabIndex = 0;
             // 
             // Form1
             // 
@@ -657,25 +657,25 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button restateLogin;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button olxLogin;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button avitoLogin;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button slandoLogin;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -708,9 +708,9 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox textBox17;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button connectButton;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox textBox20;
+        private System.Windows.Forms.TextBox ipTextBox;
     }
 }
 
