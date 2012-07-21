@@ -36,11 +36,13 @@ namespace PosterServer
 
                 IWebElement mail_elem = driver.FindElement(By.Id("userEmail"));
 
+                mail_elem.Clear();
                 mail_elem.Click();
                 mail_elem.SendKeys(mail);
 
                 IWebElement pass_elem = driver.FindElement(By.Id("userPass"));
 
+                pass_elem.Clear();
                 pass_elem.Click();
                 pass_elem.SendKeys(password);
 
@@ -58,11 +60,13 @@ namespace PosterServer
 
                 IWebElement mail_elem = driver.FindElement(By.Id("username"));
 
+                mail_elem.Clear();
                 mail_elem.Click();
                 mail_elem.SendKeys(mail);
 
                 IWebElement pass_elem = driver.FindElement(By.Id("password"));
 
+                pass_elem.Clear();
                 pass_elem.Click();
                 pass_elem.SendKeys(password);
 
@@ -73,13 +77,51 @@ namespace PosterServer
                 return;
             }
             
-            if (String.Compare("restate.ru", site) == 0)
+            if (String.Compare("avito.ru", site) == 0)
             {
+                String path = "http://www.avito.ru/profile";
+                driver.Navigate().GoToUrl(path);
+
+                IWebElement mail_elem = driver.FindElement(By.Id("user_name"));
+
+                mail_elem.Clear();
+                mail_elem.Click();
+                mail_elem.SendKeys(mail);
+
+                IWebElement pass_elem = driver.FindElement(By.Id("pass"));
+
+                pass_elem.Clear();
+                pass_elem.Click();
+                pass_elem.SendKeys(password);
+
+                IWebElement login_form = driver.FindElement(By.Name("submit"));
+
+                login_form.Click();
+
                 return;
             }
 
-            if (String.Compare("avito.ru", site) == 0)
+            if (String.Compare("restate.ru", site) == 0)
             {
+                String slando_path = "http://www.restate.ru";
+                driver.Navigate().GoToUrl(slando_path);
+
+                IWebElement mail_elem = driver.FindElement(By.Name("login"));
+
+                mail_elem.Clear();
+                mail_elem.Click();
+                mail_elem.SendKeys(mail);
+
+                IWebElement pass_elem = driver.FindElement(By.Name("password"));
+
+                pass_elem.Clear();
+                pass_elem.Click();
+                pass_elem.SendKeys(password);
+
+                IWebElement login_form = driver.FindElement(By.Id("submitButton"));
+
+                login_form.Click();
+
                 return;
             }
         }
