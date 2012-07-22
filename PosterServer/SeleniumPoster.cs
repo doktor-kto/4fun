@@ -32,8 +32,6 @@ namespace PosterServer
         private IWebDriver olx_driver;
         private IWebDriver restate_driver;
 
-      
-
         public SeleniumPoster()
         {
             /*slando_driver = new FirefoxDriver(new FirefoxBinary(firefox_path), null);
@@ -45,18 +43,23 @@ namespace PosterServer
                     "http://slando.ru/account/?ref[0][action]=user&ref[0][method]=index";
             slando_driver.Navigate().GoToUrl(slando_path);
 
-            
 
             String avito_path = "http://www.avito.ru/profile";
             avito_driver.Navigate().GoToUrl(avito_path);
 
-            String restate_path = "http://www.restate.ru";
-            restate_driver.Navigate().GoToUrl(restate_path);*/
-
-            olx_driver = new FirefoxDriver(new FirefoxBinary(firefox_path), null);
-
+            
             String olx_path = "http://www.olx.ru/login.php";
-            olx_driver.Navigate().GoToUrl(olx_path);
+            olx_driver.Navigate().GoToUrl(olx_path);*/
+
+            avito_driver = new FirefoxDriver(new FirefoxBinary(firefox_path), null);
+
+            String avito_path = "http://www.avito.ru/profile";
+            avito_driver.Navigate().GoToUrl(avito_path);
+        }
+
+        public static void Delay(int Seconds)
+        {
+            System.Threading.Thread.Sleep(Seconds * 1000);
         }
 
         private void _postSlando( Advert adv )
@@ -66,22 +69,39 @@ namespace PosterServer
 
         private void _postAvito( Advert adv )
         {
+            avito_driver.Navigate().GoToUrl("http://www.avito.ru/additem");
+            avito_driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
 
+            avito_driver.FindElement(By.Id("fld_phone")).Clear();
+            avito_driver.FindElement(By.Id("fld_phone")).SendKeys(adv.phone);
+            new SelectElement(avito_driver.FindElement(By.Id("region"))).SelectByText("-- Выберите город --");
+            avito_driver.FindElement(By.Id("select-region")).Click();
+            avito_driver.FindElement(By.CssSelector("#location_653240 > strong")).Click();
+            new SelectElement(avito_driver.FindElement(By.Id("fld_metro_id"))).SelectByText(adv.subway_station);
+            new SelectElement(avito_driver.FindElement(By.Id("fld_category_id"))).SelectByText("Квартиры");
+            new SelectElement(avito_driver.FindElement(By.Id("flt_param_201"))).SelectByText("Сдам");
+            new SelectElement(avito_driver.FindElement(By.Id("flt_param_550"))).SelectByText(adv.roomNumber.ToString());
+            new SelectElement(avito_driver.FindElement(By.Id("flt_param_504"))).SelectByText("На длительный срок");
+            new SelectElement(avito_driver.FindElement(By.Id("flt_param_501"))).SelectByText(adv.floor.ToString());
+            new SelectElement(avito_driver.FindElement(By.Id("flt_param_502"))).SelectByText(adv.floorNumber.ToString());
+            avito_driver.FindElement(By.Id("flt_param_500")).Clear();
+            avito_driver.FindElement(By.Id("flt_param_500")).SendKeys(adv.square);
+            avito_driver.FindElement(By.Id("flt_param_493")).Clear();
+            avito_driver.FindElement(By.Id("flt_param_493")).SendKeys(adv.street + ", " + adv.house);
+            avito_driver.FindElement(By.Id("fld_title")).Clear();
+            avito_driver.FindElement(By.Id("fld_title")).SendKeys(adv.name);
+            avito_driver.FindElement(By.Id("fld_description")).Clear();
+            avito_driver.FindElement(By.Id("fld_description")).SendKeys(adv.desc);
+            avito_driver.FindElement(By.Id("fld_price")).Clear();
+            avito_driver.FindElement(By.Id("fld_price")).SendKeys(adv.price.ToString());
+            avito_driver.FindElement(By.Id("form_submit")).Click();
         }
 
-        public static void Delay(int Seconds)
-            {
-                System.Threading.Thread.Sleep(Seconds * 1000);
-           }
-
-        private void _postOlx( Advert adv )
+        private bool _postOlx( Advert adv )
         {
             olx_driver.Navigate().GoToUrl("http://www.olx.ru/posting.php");
             olx_driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
 
-            olx_driver.FindElement(By.Id("upload-wrapper")).Click();
-            
-            /*
             olx_driver.FindElement(By.Id("regionSelectorChangeMode")).Click();
             Delay(2);
             new SelectElement(olx_driver.FindElement(By.Id("state"))).SelectByText("Санкт-Петербург");
@@ -104,25 +124,57 @@ namespace PosterServer
             new SelectElement(olx_driver.FindElement(By.Id("neighborhood"))).SelectByText(adv.subway_station.ToString());
             olx_driver.FindElement(By.Id("description_ifr")).SendKeys(adv.desc);
 
-            ISelenium selenium = new WebDriverBackedSelenium(olx_driver, "http://www.google.com");
+            olx_driver.FindElement(By.Id("btnPublish")).Click();
 
-            selenium.Click("//a[@id='selectFiles']");
-            selenium.Type("xpath=//input[@type='file' and @name='userfile']", @"c:\testdata\image.png");
-            //olx_driver.FindElement(By.Id("btnPublish")).Click();*/
+            Delay(3);
 
-
+            if (olx_driver.Url == "http://www.olx.ru/posting_success.php")
+                return true;
+            else
+                return false;
         }
 
-        private void _postRestate( Advert adv )
+        private bool _postRestate( Advert adv )
         {
+            restate_driver.Navigate().GoToUrl("http://www.restate.ru/add.html");
+            restate_driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
 
+            new SelectElement(restate_driver.FindElement(By.Id("object_deal_id"))).SelectByText("Сдать в аренду");
+            new SelectElement(restate_driver.FindElement(By.Id("object_area_id"))).SelectByText(adv.district + " р-н");
+            new SelectElement(restate_driver.FindElement(By.Id("object_metro_id"))).SelectByText(adv.subway_station);
+            restate_driver.FindElement(By.Id("object_address_street1")).Clear();
+            restate_driver.FindElement(By.Id("object_address_street1")).SendKeys(adv.street);
+            restate_driver.FindElement(By.Id("house")).Clear();
+            restate_driver.FindElement(By.Id("house")).SendKeys(adv.house.ToString());
+            restate_driver.FindElement(By.Id("sall")).Clear();
+            restate_driver.FindElement(By.Id("sall")).SendKeys(adv.square.ToString());
+            restate_driver.FindElement(By.Id("description")).Clear();
+            restate_driver.FindElement(By.Id("description")).SendKeys(adv.desc);
+            restate_driver.FindElement(By.Id("price")).Clear();
+            restate_driver.FindElement(By.Id("price")).SendKeys(adv.price.ToString());
+            restate_driver.FindElement(By.Id("contacts")).Clear();
+            restate_driver.FindElement(By.Id("contacts")).SendKeys(adv.phone + "\n" + adv.e_mail);
+            restate_driver.FindElement(By.Name("commit")).Click();
 
+            restate_driver.FindElement(By.Id("rooms")).Clear();
+            restate_driver.FindElement(By.Id("rooms")).SendKeys(adv.roomNumber.ToString());
+            restate_driver.FindElement(By.Id("et")).Clear();
+            restate_driver.FindElement(By.Id("et")).SendKeys(adv.floor.ToString());
+            restate_driver.FindElement(By.Id("etall")).Clear();
+            restate_driver.FindElement(By.Id("etall")).SendKeys(adv.floorNumber.ToString());
+            restate_driver.FindElement(By.Id("s1")).Clear();
+            restate_driver.FindElement(By.Id("s1")).SendKeys(adv.square.ToString());
+            restate_driver.FindElement(By.Name("commit")).Click();
+
+            return true;
         }
 
         public void postAdvert( Advert adv )
         {
-            _postOlx(adv);
-            _postRestate(adv);
+            /*if (_postOlx(adv))
+                ;*/
+            /*if (_postRestate(adv))
+                ;*/
             _postAvito(adv);
             _postSlando(adv);
 
