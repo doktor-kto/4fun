@@ -8,8 +8,8 @@ namespace PosterServer
     [Serializable]
     class Advert
     {
-        public int roomNumber;
-        public int price;
+        public string roomNumber;
+        public string price;
         public string name;
         public string desc;
         public string district;
@@ -17,15 +17,15 @@ namespace PosterServer
         public string street;
         public string house;
         public string square;
-        public int floor;
-        public int floorNumber;
+        public string floor;
+        public string floorNumber;
         public string phone;        
         public string e_mail;
         public string person;
         public string date;
 
-        public Advert( int roomNumber,
-                       int price,
+        public Advert( string roomNumber,
+                       string price,
                        string name,
                        string desc,
                        string district,
@@ -33,8 +33,8 @@ namespace PosterServer
                        string street,
                        string house,
                        string square,
-                       int floor,
-                       int floorNumber,
+                       string floor,
+                       string floorNumber,
                        string phone,
                        string e_mail,
                        string person, 

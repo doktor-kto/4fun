@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Generic;   
 using System.Linq;
 using System.Text;
 
@@ -10,11 +10,85 @@ namespace PosterServer
 {
     class Program
     {
+        public static bool work( SeleniumPoster ps, Server s )
+        {
+            int length = -1;
+            byte[] buf = new byte[4096];
+            bool loginCaught = false, passCaught = false;
+            String captchakey, pass = "-1", login = "-1", advert;
+
+            try
+            {
+
+                while (true)
+                {
+                    int res = s.receiveMessage(buf, ref length);
+
+                    if (res == 3) // captchakey
+                    {
+                        System.Text.UTF8Encoding enc = new System.Text.UTF8Encoding();
+                        captchakey = enc.GetString(buf, 0, length);
+
+                        ps.setCaptchaKey(captchakey);
+                        if (ps.verifyCaptchaKey())
+                            s.sendResult(true);
+                        else
+                            s.sendResult(false);
+                    }
+
+                    if (res == 1) // password
+                    {
+                        passCaught = true;
+                        System.Text.UTF8Encoding enc = new System.Text.UTF8Encoding();
+                        pass = enc.GetString(buf, 0, length);
+
+                        Console.WriteLine("pass: " + pass);
+                    }
+
+                    if (res == 2) // login
+                    {
+                        loginCaught = true;
+                        System.Text.UTF8Encoding enc = new System.Text.UTF8Encoding();
+                        login = enc.GetString(buf, 0, length);
+
+                        Console.WriteLine("login: " + login);
+                    }
+
+                    if (res == 0) // advert
+                    {
+                        System.Text.UTF8Encoding enc = new System.Text.UTF8Encoding();
+                        advert = enc.GetString(buf, 0, length);
+
+                        string[] words = advert.Split('\n');
+
+                        Advert adv = new Advert(words[0], words[1], words[2],
+                                                words[3], words[4], words[5],
+                                                words[6], words[7], words[8],
+                                                words[9], words[10], words[11],
+                                                words[12], words[13], words[14]);
+                        
+
+                    }
+
+                    if (loginCaught && passCaught)
+                    {
+                        ps.login(login, pass);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public static void Main()
         {
-            Advert adv = new Advert(3, 20000, "Квартира в хорошем состоянии",
+            Advert adv = new Advert("3", "20000", "Квартира в хорошем состоянии",
     "Отличная квартира", "Адмиралтейский", "Сенная площадь",
-    "Садовая", "24", "50", 3, 5, "891239000",
+    "Садовая", "24", "50", "3", "5", "891239000",
     "iamdiligentstudent@narod.ru", "Мария", "15-07-2012");
 
             String str = adv.ToString();
@@ -48,14 +122,16 @@ namespace PosterServer
                 "iamdiligentstudent@narod.ru", "Мария", "15-07-2012"));*/
 
             Server s = new Server();
-
+            
             if (!s.start("192.168.0.104", 5050))
                 return;
 
-
-
-
-            s.acceptConnection();
+            while (true)
+            {
+                s.acceptConnection();
+                Console.WriteLine("Connection accepted\n");
+                work(ps, s);
+            }
 
             s.stop();
         }
