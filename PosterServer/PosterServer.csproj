@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Advert.cs" />
+    <Compile Include="AntiCaptcha.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="SeleniumPoster.cs" />
     <Compile Include="Server.cs" />

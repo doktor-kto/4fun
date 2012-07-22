@@ -43,18 +43,20 @@ namespace PosterServer
                     "http://slando.ru/account/?ref[0][action]=user&ref[0][method]=index";
             slando_driver.Navigate().GoToUrl(slando_path);
 
-
             String avito_path = "http://www.avito.ru/profile";
             avito_driver.Navigate().GoToUrl(avito_path);
 
-            
             String olx_path = "http://www.olx.ru/login.php";
-            olx_driver.Navigate().GoToUrl(olx_path);*/
+            olx_driver.Navigate().GoToUrl(olx_path);
 
-            avito_driver = new FirefoxDriver(new FirefoxBinary(firefox_path), null);
+            String restate_path = "http://www.restate.ru";
+            restate_driver.Navigate().GoToUrl(restate_path);*/
 
-            String avito_path = "http://www.avito.ru/profile";
-            avito_driver.Navigate().GoToUrl(avito_path);
+            slando_driver = new FirefoxDriver(new FirefoxBinary(firefox_path), null);
+
+            String slando_path =
+                "http://slando.ru/account/?ref[0][action]=user&ref[0][method]=index";
+            slando_driver.Navigate().GoToUrl(slando_path);
         }
 
         public static void Delay(int Seconds)
@@ -64,7 +66,37 @@ namespace PosterServer
 
         private void _postSlando( Advert adv )
         {
-
+            slando_driver.Navigate().GoToUrl("http://www.slando.ru/post-new-ad/");
+            slando_driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            
+            slando_driver.FindElement(By.Id("add-title")).Clear();
+            slando_driver.FindElement(By.Id("add-title")).SendKeys(adv.name);
+            slando_driver.FindElement(By.XPath("//span[@id='choose-category-button']")).Click();
+            Delay(1);
+            slando_driver.FindElement(By.LinkText("Недвижимость")).Click();            
+            Delay(1);
+            slando_driver.FindElement(By.LinkText("Аренда квартир")).Click();
+            Delay(1);
+            slando_driver.FindElement(By.LinkText("Долгосрочная аренда квартир")).Click();
+            new SelectElement(slando_driver.FindElement(By.Id("id-offer-seek"))).SelectByText("Предлагаю");
+            slando_driver.FindElement(By.Name("data[param_price][1]")).Clear();
+            slando_driver.FindElement(By.Name("data[param_price][1]")).SendKeys(adv.price.ToString());
+            slando_driver.FindElement(By.Name("data[param_number_of_rooms]")).Clear();
+            slando_driver.FindElement(By.Name("data[param_number_of_rooms]")).SendKeys(adv.roomNumber.ToString());
+            slando_driver.FindElement(By.Name("data[param_rent_from]")).Click();
+            slando_driver.FindElement(By.Name("data[param_rent_from]")).Clear();
+            slando_driver.FindElement(By.Name("data[param_rent_from]")).SendKeys(adv.date);
+            slando_driver.FindElement(By.Id("parameter-div-number_of_rooms")).Click();
+            new SelectElement(slando_driver.FindElement(By.Id("id_private_business"))).SelectByText("Частное лицо");
+            slando_driver.FindElement(By.Id("add-description")).Clear();
+            slando_driver.FindElement(By.Id("add-description")).SendKeys(adv.desc);
+            slando_driver.FindElement(By.Id("show-gallery-html")).Click();
+            new SelectElement(slando_driver.FindElement(By.Id("region-id-select"))).SelectByText(" -> Санкт-Петербург");
+            slando_driver.FindElement(By.Id("add-person")).Clear();
+            slando_driver.FindElement(By.Id("add-person")).SendKeys(adv.person);
+            slando_driver.FindElement(By.Id("add-phone")).Clear();
+            slando_driver.FindElement(By.Id("add-phone")).SendKeys(adv.phone);
+            slando_driver.FindElement(By.Id("save")).Click();
         }
 
         private void _postAvito( Advert adv )
@@ -175,7 +207,7 @@ namespace PosterServer
                 ;*/
             /*if (_postRestate(adv))
                 ;*/
-            _postAvito(adv);
+            /*_postAvito(adv);*/
             _postSlando(adv);
 
         }

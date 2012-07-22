@@ -5,6 +5,7 @@ using System.Text;
 
 namespace PosterServer
 {
+    [Serializable]
     class Advert
     {
         public int roomNumber;
@@ -20,6 +21,8 @@ namespace PosterServer
         public int floorNumber;
         public string phone;        
         public string e_mail;
+        public string person;
+        public string date;
 
         public Advert( int roomNumber,
                        int price,
@@ -33,7 +36,9 @@ namespace PosterServer
                        int floor,
                        int floorNumber,
                        string phone,
-                       string e_mail )
+                       string e_mail,
+                       string person, 
+                       string date )
         {
             this.roomNumber = roomNumber;
             this.price = price;
@@ -48,6 +53,8 @@ namespace PosterServer
             this.floorNumber = floorNumber;
             this.phone = phone;
             this.e_mail = e_mail;
+            this.person = person;
+            this.date = date;
         }
     }
 }
