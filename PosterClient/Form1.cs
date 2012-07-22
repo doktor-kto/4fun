@@ -38,5 +38,12 @@ namespace PosterClient
 
             MessageBox.Show("Соединение установлено");
         }
+
+        private void captchaConnect_Click(object sender, EventArgs e)
+        {
+            String key = captchaKeyTextBox.Text;
+
+
+        }
     }
 }
