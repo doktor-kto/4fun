@@ -61,11 +61,29 @@ namespace PosterServer
 
                         string[] words = advert.Split('\n');
 
+                        /*        public Advert( string roomNumber,
+                       string price,
+                       string name,
+                       string desc,
+                       string district,
+                       string subway_station,
+                       string street,
+                       string house,
+                       string square,
+                       string floor,
+                       string floorNumber,
+                       string phone,
+                       string e_mail,
+                       string person, 
+                       string date )*/
+
                         Advert adv = new Advert(words[0], words[1], words[2],
                                                 words[3], words[4], words[5],
                                                 words[6], words[7], words[8],
                                                 words[9], words[10], words[11],
                                                 words[12], words[13], words[14]);
+
+                        ps.postAdvert(adv);
                         
 
                     }
@@ -98,8 +116,9 @@ namespace PosterServer
             /*ps.login("avito.ru", "iamdiligentstudent@narod.ru", "86420555");*/
             
             //ps.login("slando.ru", "iamdiligentstudent@narod.ru", "86420555");
-            /*ps.login("olx.ru", "iamdiligentstudent@narod.ru", "86420555");
-            ps.login("restate.ru", "iamdiligentstudent@narod.ru", "86420555");*/
+            ps.login("olx.ru", "iamdiligentstudent@narod.ru", "86420555");
+            ps.postAdvert(adv);
+            //ps.login("restate.ru", "iamdiligentstudent@narod.ru", "86420555");*/
 
             /*class Advert
             {

@@ -77,7 +77,7 @@ namespace PosterServer
                 {
                     //add your action here
                 }
-                Delay(2);
+                Delay(1);
             }
             while ((check == "ERROR_NO_SLOT_AVAILABLE"));
 
@@ -177,6 +177,7 @@ namespace PosterServer
             olx_driver.FindElement(By.Id("streetaddress")).SendKeys(adv.street + ", " + adv.house);
             new SelectElement(olx_driver.FindElement(By.Id("bedrooms"))).SelectByText(adv.roomNumber);
             new SelectElement(olx_driver.FindElement(By.Id("neighborhood"))).SelectByText(adv.subway_station);
+            
             olx_driver.FindElement(By.Id("description_ifr")).SendKeys(adv.desc);
 
             olx_driver.FindElement(By.Id("btnPublish")).Click();
@@ -226,13 +227,12 @@ namespace PosterServer
 
         public void postAdvert( Advert adv )
         {
-            /*if (_postOlx(adv))
-                ;*/
-            /*if (_postRestate(adv))
-                ;*/
-            /*_postAvito(adv);*/
+            if (_postOlx(adv))
+                ;
+            if (_postRestate(adv))
+                ;
+            _postAvito(adv);
             _postSlando(adv);
-
         }
 
         public void login( String mail, String password )
