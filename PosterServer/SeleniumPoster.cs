@@ -27,7 +27,7 @@ namespace PosterServer
     class SeleniumPoster
     {
         private String _captchaKey;
-        private String firefox_path = "d:\\Programs\\Mozilla Firefox\\firefox.exe";
+        private String firefox_path = "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe";
         private IWebDriver slando_driver;
         private IWebDriver avito_driver;
         private IWebDriver olx_driver;
@@ -66,18 +66,22 @@ namespace PosterServer
 
         public bool verifyCaptchaKey()
         {
-            string pathTestCaptcha = "C:\\captcha.jpg";
+            string pathTestCaptcha = "captcha.jpg";
             string check = String.Empty;
+
+            Console.WriteLine("verifyCaptchaKey");
 
             do
             {
                 AntiCaptcha anticap = new AntiCaptcha();
+                Console.WriteLine("new anticaptcha");
                 check = anticap.GetText(_captchaKey, pathTestCaptcha, 10000);
+                Console.Write("check: " + check);
                 if (check == "ERROR_NO_SLOT_AVAILABLE")
                 {
                     //add your action here
                 }
-                Delay(1);
+                Delay(2);
             }
             while ((check == "ERROR_NO_SLOT_AVAILABLE"));
 
