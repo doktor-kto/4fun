@@ -44,7 +44,15 @@ namespace PosterClient
                 return;
             }
 
-            tcpclnt.Connect(ip, 5050);
+            try
+            {
+                tcpclnt.Connect(ip, 5050);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show("Не удалось подключиться к серверу. Попробуйте еще раз.");
+                return;
+            }
 
             MessageBox.Show("Соединение установлено");
 
@@ -52,11 +60,14 @@ namespace PosterClient
             tabControl1.SelectedTab = tabAntiCaptcha;
         }
 
-        public int encodeBytes(String str, ref byte[] buf, int code)
+        public int encodeBytes( String str, ref byte[] buf, int code )
         {            
-            buf[0] = (byte)code;
+            buf[0] = (byte)code;            
 
-            int length = str.Length;
+            System.Text.UTF8Encoding encoding = new System.Text.UTF8Encoding();
+            Byte[] bytes = encoding.GetBytes(str);
+
+            int length = bytes.Length;
 
             int length1 = length % 10,
                 length2 = (length / 10) % 10,
@@ -67,9 +78,6 @@ namespace PosterClient
             buf[2] = (byte)(length2);
             buf[3] = (byte)(length3);
             buf[4] = (byte)(length4);
-
-            System.Text.UTF8Encoding encoding = new System.Text.UTF8Encoding();
-            Byte[] bytes = encoding.GetBytes(str);
 
             for (int i = 5; i < bytes.Length + 5; i++)
                 buf[i] = bytes[i - 5];
@@ -123,14 +131,14 @@ namespace PosterClient
 
         private void btnPostAdv_Click(object sender, EventArgs e)
         {
-            String adv = descTextBox.Text + "\n" + priceTextBox.Text + "\n" +  
-                         roomNumberTextBox.Text + "\n" + nameTextBox.Text + "\n" +
-                         squareTextBox.Text + "\n" + houseTextBox.Text + "\n" +
-                         streetTextBox.Text + "\n" + subwayTextBox.Text + "\n" +
-                         districtTextBox.Text + "\n" + phoneTextBox.Text + "\n" +
-                         floorNumberTextBox.Text + "\n" + floorTextBox.Text + "\n" +
-                         personTextBox.Text + "\n" + dateTextBox.Text + "\n" + emailTextBox.Text;
-
+            String adv = roomNumberTextBox.Text + "\n" + priceTextBox.Text + "\n" +
+                nameTextBox.Text + "\n" + descTextBox.Text + "\n" + 
+                districtTextBox.Text + "\n" + subwayTextBox.Text + 
+                streetTextBox.Text + "\n" + houseTextBox.Text + "\n" + 
+                squareTextBox.Text + "\n" + floorTextBox.Text + "\n" +  
+                floorNumberTextBox.Text + "\n" + phoneTextBox.Text + "\n" +  
+                emailTextBox.Text + "\n" + personTextBox.Text + "\n" + dateTextBox.Text;
+                
             byte[] buf = new byte[4096];
 
             int length = encodeBytes(adv, ref buf, 10);

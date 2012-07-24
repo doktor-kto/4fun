@@ -49,6 +49,8 @@
             this.passTextBox = new System.Windows.Forms.TextBox();
             this.loginTextBox = new System.Windows.Forms.TextBox();
             this.tabAdvert = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.emailTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dateTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -79,8 +81,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.roomNumberTextBox = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.emailTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabServer.SuspendLayout();
             this.tabAntiCaptcha.SuspendLayout();
@@ -325,14 +325,30 @@
             this.tabAdvert.Text = "Объявление";
             this.tabAdvert.UseVisualStyleBackColor = true;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(458, 528);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(32, 13);
+            this.label10.TabIndex = 32;
+            this.label10.Text = "Email";
+            // 
+            // emailTextBox
+            // 
+            this.emailTextBox.Location = new System.Drawing.Point(521, 525);
+            this.emailTextBox.Name = "emailTextBox";
+            this.emailTextBox.Size = new System.Drawing.Size(257, 20);
+            this.emailTextBox.TabIndex = 31;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(458, 480);
+            this.label5.Location = new System.Drawing.Point(420, 484);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(33, 13);
+            this.label5.Size = new System.Drawing.Size(96, 13);
             this.label5.TabIndex = 30;
-            this.label5.Text = "Дата";
+            this.label5.Text = "Дата (ДД-ММ-ГГ)";
             // 
             // dateTextBox
             // 
@@ -569,22 +585,6 @@
             this.roomNumberTextBox.Name = "roomNumberTextBox";
             this.roomNumberTextBox.Size = new System.Drawing.Size(257, 20);
             this.roomNumberTextBox.TabIndex = 1;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(458, 528);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(32, 13);
-            this.label10.TabIndex = 32;
-            this.label10.Text = "Email";
-            // 
-            // emailTextBox
-            // 
-            this.emailTextBox.Location = new System.Drawing.Point(521, 525);
-            this.emailTextBox.Name = "emailTextBox";
-            this.emailTextBox.Size = new System.Drawing.Size(257, 20);
-            this.emailTextBox.TabIndex = 31;
             // 
             // Form1
             // 
