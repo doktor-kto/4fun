@@ -30,6 +30,7 @@ namespace PosterServer
                         captchakey = enc.GetString(buf, 0, length);
 
                         ps.setCaptchaKey(captchakey);
+                        Console.WriteLine("captchakey set: " + captchakey + " verifying");
                         if (ps.verifyCaptchaKey())
                             s.sendResult(true);
                         else
@@ -96,27 +97,34 @@ namespace PosterServer
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
 
             return true;
         }
 
-        public static void Main()
+        public static void Main( string[] args )
         {
-            Advert adv = new Advert("3", "20000", "Квартира в хорошем состоянии",
+            /*Advert adv = new Advert("3", "20000", "Квартира в хорошем состоянии",
     "Отличная квартира", "Адмиралтейский", "Сенная площадь",
     "Садовая", "24", "50", "3", "5", "891239000",
     "iamdiligentstudent@narod.ru", "Мария", "15-07-2012");
 
-            String str = adv.ToString();
+            String str = adv.ToString();*/
+
+            if (args.Length == 0)
+            {
+                Console.WriteLine("Provide server ip address");
+                return;
+            }
 
             SeleniumPoster ps = new SeleniumPoster();
 
             /*ps.login("avito.ru", "iamdiligentstudent@narod.ru", "86420555");*/
             
             //ps.login("slando.ru", "iamdiligentstudent@narod.ru", "86420555");
-            ps.login("olx.ru", "iamdiligentstudent@narod.ru", "86420555");
+            /*ps.login("olx.ru", "iamdiligentstudent@narod.ru", "86420555");
             ps.postAdvert(adv);
             //ps.login("restate.ru", "iamdiligentstudent@narod.ru", "86420555");*/
 
@@ -142,7 +150,7 @@ namespace PosterServer
 
             Server s = new Server();
             
-            if (!s.start("192.168.0.104", 5050))
+            if (!s.start(args[0], 5050))
                 return;
 
             while (true)
